@@ -1,0 +1,130 @@
+<!-- Main Wrapper -->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+
+    <!-- Drawer Container -->
+    <mat-drawer-container class="flex-auto h-full">
+
+        <!-- Drawer -->
+        <mat-drawer class="w-80 max-w-96" [autoFocus]="false" [mode]="drawerMode" [opened]="drawerOpened" #matDrawer>
+
+            <!-- Watchlist Wrapper -->
+            <div class="flex flex-col flex-auto h-full">
+
+                <!-- Watchlist -->
+                <div class="flex flex-col flex-0">
+                    <!-- For-Loop -->
+                    <div class="flex flex-0 items-center p-5 border-b cursor-pointer"
+                        *ngFor="let item of data.watchlist" (click)="getHistoryByItem(item)">
+                        <!-- Coin Title, Coin ISO, Price, Trend Icon, Trend Amount -->
+                        <div class="flex flex-col flex-auto pr-6">
+                            <div class="flex items-baseline">
+                                <div class="mr-1 font-medium text-secondary">{{item.title}}</div>
+                                <div class="font-medium text-sm uppercase tracking-wider">({{item.iso}})</div>
+                            </div>
+                            <div class="flex items-end mt-2">
+                                <div class="min-w-20 font-mono text-2xl tracking-tighter leading-none">
+                                    {{item.amount | currency:'USD':'symbol':'1.2-4'}}
+                                </div>
+                                <mat-icon class="text-green-500 icon-size-3.5 mx-0.5 mb-px"
+                                    [ngClass]="{'text-green-500': item.trend.dir === 'up', 'text-red-500': item.trend.dir === 'down'}">{{'trending_'
+                                    + item.trend.dir}}</mat-icon>
+                                <div class="font-mono font-medium text-sm leading-none mb-px"
+                                    [ngClass]="{'text-green-500': item.trend.dir === 'up', 'text-red-500': item.trend.dir === 'down'}">
+                                    {{item.trend.amount}}%
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Coin Title, Coin ISO, Price, Trend Icon, Trend Amount -->
+
+                        <!-- Chart -->
+                        <apx-chart *ngIf="item.series?.length" class="flex flex-auto items-center h-10 overflow-hidden"
+                            [chart]="watchlistChartOptions.chart"
+                            [colors]="item.trend.dir === 'up' ? ['#48BB78']: ['#F56565']" [series]="item.series"
+                            [stroke]="watchlistChartOptions.stroke" [tooltip]="watchlistChartOptions.tooltip"
+                            [xaxis]="watchlistChartOptions.xaxis"></apx-chart>
+                        <!-- End Chart -->
+                    </div>
+                    <!-- End For-Loop -->
+                </div>
+                <!-- End Watchlist -->
+            </div>
+            <!-- End Watchlist Wrapper -->
+        </mat-drawer>
+
+        <!-- Content -->
+        <mat-drawer-content class="flex flex-col">
+            <!-- Content Wrapper -->
+            <div class="flex flex-col flex-auto min-h-full bg-card">
+                <!-- Header Section -->
+                <div class="flex flex-wrap items-center pl-4 pr-6 py-3 md:pl-6 border-b">
+                    <!-- Menu Button -->
+                    <button class="mr-6" mat-icon-button (click)="matDrawer.toggle()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+                    <!-- End Menu Button -->
+
+                    <!-- Name, Symbol, Price and Trend -->
+                    <div class="flex flex-col flex-auto my-3 mr-6">
+                        <div class="flex items-center">
+                            <div class="font-medium text-2xl text-secondary mr-2">{{data.currentCoin.name}}</div>
+                            <div class="font-medium text-lg tracking-wider">({{data.currentCoin.symbol | uppercase}})
+                            </div>
+                        </div>
+                        <div class="flex items-end mt-1">
+                            <div class="mr-2 font-mono text-3xl leading-none tracking-tight">{{data.currentCoin.amount |
+                                currency:'USD':'symbol':'1.2-2'}}</div>
+                            <mat-icon class="text-green-500 icon-size-5 mr-0.5 mb-px"
+                                [ngClass]="{'text-green-500': data.currentCoin.trend.dir === 'up', 'text-red-500': data.currentCoin.trend.dir === 'down'}">{{'trending_'+data.currentCoin.trend.dir}}</mat-icon>
+                            <div class="font-mono font-medium text-lg leading-none mb-px"
+                                [ngClass]="{'text-green-500': data.currentCoin.trend.dir === 'up', 'text-red-500': data.currentCoin.trend.dir === 'down'}">
+                                {{data.currentCoin.trend.amount}}%
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Market Metrics: Market Cap, Volume, Supply, All-Time High -->
+                    <div class="hidden sm:flex items-center my-3">
+                        <!-- Market Cap -->
+                        <div class="p-4 leading-none rounded-l-xl border border-r-0">
+                            <div class="text-sm font-medium text-secondary">Market Cap</div>
+                            <div class="mt-2 font-mono text-xl">{{ (data.currentCoin.marketCap / 1000000000) | currency
+                                }}B</div>
+                        </div>
+
+                        <!-- Volume -->
+                        <div class="p-4 leading-none border border-r-0">
+                            <div class="text-sm font-medium text-secondary">Volume</div>
+                            <div class="mt-2 font-mono text-xl">{{ (data.currentCoin.volume / 1000000) | currency }}M
+                            </div>
+                        </div>
+
+                        <!-- Supply -->
+                        <div class="p-4 leading-none border border-r-0">
+                            <div class="text-sm font-medium text-secondary">Supply</div>
+                            <div class="mt-2 font-mono text-xl">{{ (data.currentCoin.supply / 1000000) | currency }}M
+                            </div>
+                        </div>
+
+                        <!-- All-Time High -->
+                        <div class="p-4 leading-none rounded-r-xl border">
+                            <div class="text-sm font-medium text-secondary">All-Time High</div>
+                            <div class="mt-2 font-mono text-xl">{{ data.currentCoin.allTimeHigh | currency:'USD' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Header Section -->
+
+                <!-- Chart Section -->
+                <div class="relative flex flex-auto bg-gray-50">
+                    <apx-chart class="relative w-full h-160 md:absolute md:inset-0 md:h-auto overflow-hidden"
+                        [chart]="chartOptions.chart" [colors]="chartOptions.colors"
+                        [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [legend]="chartOptions.legend"
+                        [series]="chartOptions.series" [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip"
+                        [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis" #btcChartComponent></apx-chart>
+                </div>
+                <!-- End Chart Section -->
+            </div>
+            <!-- End Content Wrapper -->
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

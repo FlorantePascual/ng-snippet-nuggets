@@ -1,0 +1,40 @@
+<!-- home.component.html -->
+
+<!-- Navbar -->
+<mat-toolbar color="primary" class="mb-8">
+    <span class="text-white font-bold text-lg">Angular Snippet Nuggets</span>
+    <span class="flex-grow"></span>
+    <button mat-button routerLink="/" routerLinkActive="active">Home</button>
+    <button mat-button routerLink="/features" routerLinkActive="active">Features</button>
+    <button mat-button routerLink="/documentation" routerLinkActive="active">Documentation</button>
+    <button mat-button routerLink="/github" routerLinkActive="active">GitHub</button>
+</mat-toolbar>
+
+<!-- Main Content -->
+<div class="flex-grow container mx-auto mt-8">
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Left Column - Description -->
+        <div>
+            <h2 class="text-4xl font-bold mb-4">Realtime Crypto Graph</h2>
+            <p class="text-lg mb-6">Learn how to build a real-time graph showcasing market stats of various
+                cryptocurrencies using Angular 17, Angular Material, and TailwindCSS.</p>
+            <button mat-raised-button color="primary" routerLink="/crypto">Get Started</button>
+        </div>
+
+        <!-- Right Column - Graph -->
+        <div>
+            <div id="cryptoGraph" class="bg-white rounded-lg shadow-md p-4">
+                <img src="assets/images/screenshots/crypto.webp" alt="Crypto Screenshot">
+                <!-- Realtime graph component will be inserted here -->
+                <div class="text-center text-gray-500">Preview of Crypto Graph Nugget</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<mat-toolbar color="primary" class="fixed bottom-0 w-full">
+    <div class="container mx-auto">
+        <span class="text-white">&copy; 2024 FlorantePascual.com All rights reserved.</span>
+    </div>
+</mat-toolbar>
