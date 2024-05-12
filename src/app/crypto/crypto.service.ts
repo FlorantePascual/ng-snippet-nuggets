@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { MarketChartHistoryDto, MarketDataDto, RawDataDto, WatchListDto, COINS } from './crypto.types';
 
 const URL = {
-    coinGeckoProxyLocal: 'http://127.0.0.1:5001/florante-pascual/us-central1/coinGeckoProxy',
+    coinGeckoProxyLocal: 'http://127.0.0.1:5001/your-project-name/us-central1/coinGeckoProxy',
     coinGeckoProxy: 'https://your-project-name.cloudfunctions.net/coinGeckoProxy',
 }
 

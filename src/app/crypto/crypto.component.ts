@@ -30,7 +30,7 @@ import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/l
 })
 export class CryptoComponent implements OnInit, OnDestroy {
 
-    @ViewChild('btcChartComponent') btcChartComponent: ChartComponent;
+    @ViewChild('coinChartComponent') coinChartComponent: ChartComponent;
     appConfig: any;
     chartOptions: ApexOptions = {};
     data: any;

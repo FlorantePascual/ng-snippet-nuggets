@@ -9,6 +9,9 @@ Welcome to Angular Snippet Nuggets, a collection of tutorials featuring various 
 **Description:**  
 Learn how to build a real-time cryptocurrency graph dashboard. This tutorial includes a backend proxy to coingecko.com to retrieve data and display it using ApexCharts. The design is fully responsive.
 
+See production-grade implementation here to whet your appetite:
+[Angular AI-Powered Demo](https://angular.florantepascual.com/dashboards/crypto)
+
 **Technologies Used:**
 - Angular 17
 - Angular Material
@@ -56,10 +59,6 @@ Learn how to build a real-time cryptocurrency graph dashboard. This tutorial inc
 ### Running the Backend Proxy
 
 To run the backend proxy, refer to the [NodeJS Backend Nuggets (node-backend-nuggets)](https://github.com/FlorantePascual/node-backend-nuggets) repository. This separate repository contains all the details and instructions necessary to set up and run the backend server for the real-time cryptocurrency graph dashboard.
-
-## Contributing
-
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
 ## License
 
