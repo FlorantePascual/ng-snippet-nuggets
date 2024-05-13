@@ -11,6 +11,7 @@ Learn how to build a real-time cryptocurrency graph dashboard. This tutorial inc
 
 See production-grade implementation here to whet your appetite:
 [Angular AI-Powered Demo](https://angular.florantepascual.com/dashboards/crypto)
+[![Angular AI-Powered Demo](./src/assets/images/screenshots/crypto-prod.webp)](https://angular.florantepascual.com/dashboards/crypto)
 
 **Technologies Used:**
 - Angular 17

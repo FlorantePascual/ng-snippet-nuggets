@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
+import { FooterComponent } from '../common/footer/footer.component';
+import { NavbarComponent } from '../common/navbar/navbar.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [MatToolbarModule, MatButtonModule, RouterLink],
+    imports: [RouterLink, NavbarComponent, FooterComponent, MatButtonModule],
     templateUrl: './home.component.html',
 })
 export class HomeComponent {

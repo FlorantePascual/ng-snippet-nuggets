@@ -14,5 +14,13 @@ export const routes: Routes = [
     {
         path: 'crypto',
         loadChildren: () => import('./crypto/crypto.routes')
+    },
+    {
+        path: 'documentation',
+        loadChildren: () => import('./pages/documentation/documentation.routes')
+    },
+    {
+        path: 'features',
+        loadChildren: () => import('./pages/features/features.routes')
     }
 ];
